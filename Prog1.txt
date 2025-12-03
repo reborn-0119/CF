@@ -1,0 +1,37 @@
+Objective: 
+To generate a cryptographic hash (specifically SHA-256) of a file 
+and demonstrate that any modification—even a single bit—produces a 
+completely different hash, proving data tampering.
+
+Tools Required:
+Windows OS 
+Hasher.exe (from EZ Tools by Eric Zimmerman) 
+Notepad (or any text editor)
+
+Procedure
+1. Setup the Tool
+Download Hasher.zip from the Eric Zimmerman GitHub page.
+Extract the zip file and place Hasher.exe in a folder (e.g., C:\EZ Tools\).
+2. Create the "Evidence"
+Open Notepad and type the exact sentence:
+"Forensic evidence must never be altered."
+Save this file as evidence_original.txt inside your tools folder.
+3. Calculate the Baseline Hash
+Open your Command Prompt (cmd) and navigate to your folder (cd C:\EZ Tools).
+Run the following command to generate the SHA-256 hash: Hasher.exe -f evidence_original.txt --sha256
+Action: Record the long string of characters it outputs. This is your Baseline Hash
+4. Simulate Tampering
+Open evidence_original.txt in Notepad again.
+Change the word "never" to "always".
+Save the file.
+5. Calculate the Tampered Hash
+Run the same command again: Hasher.exe -f evidence_original.txt --sha256
+Action: Record this new hash string as the Tampered Hash.
+
+Analysis & Results
+When you compare the two hash values, you will notice they are completely different.
+The Observation: Even though you only changed one word, the resulting 64-character hash is entirely different.
+
+Conclusion: 
+Cryptographic hashing ensures integrity verification. Any alteration invalidates the hash, 
+providing tamper-evidence that is critical in legal proceedings.

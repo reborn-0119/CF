@@ -1,0 +1,29 @@
+Objective:
+Use built-in CLI tools to gather network configuration, active connections, and trace packet paths.
+
+Tools Required:
+Command Prompt (Windows)
+Internet connection
+
+Procedure and Windows Command
+1. Task: Record IP, MAC, Gateway, DNS
+   Command: ipconfig /all
+2. Task: Find an ESTABLISHED connection → note PID
+   Command: netstat -ano
+3. Task: Count hops, identify first hop (gateway)
+   Command: tracert www.google.com
+
+Deliverable: Network Recon Table
+Item                            Value
+IP Address 
+MAC Address 
+Default Gateway 
+DNS Server
+ESTABLISHED PID
+Process Name (from PID)
+Total Hops to Google
+First Hop (Gateway IP)
+
+Conclusion:
+Built-in OS tools enable passive reconnaissance of network state and routing paths — essential
+for incident response and forensic timeline reconstruction.
