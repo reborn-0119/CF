@@ -1,0 +1,47 @@
+Objective:
+Load the live NTUSER.DAT hive and extract proof-of-execution evidence from the UserAssist key
+using Registry Explorer (superior to regedit ).
+
+Tools Required:
+Windows OS
+RegistryExplorer.exe (EZ Tools)
+Recent program activity (run 2–3 apps before starting)
+
+Procedure
+1. Download Registry Explorer
+    Same site: https://ericzimmerman.github.io/#!index.md
+    Extract → place RegistryExplorer.exe in C:\EZ_Tools\
+2. Launch & Load Live Hive
+    Run RegistryExplorer.exe as Administrator
+    File → Load Live Hive
+    Select NTUSER.DAT (current user)
+3. Navigate to UserAssist
+    Use Bookmarks panel → expand NTUSER.DAT
+    Go to:
+    Software → Microsoft → Windows → CurrentVersion → Explorer →UserAssist
+4. Extract Evidence
+    Click any {GUID}\Count subkey
+    In the right pane, view decoded ROT13 entries
+    Record the last 3 executed programs:
+        Full path
+        Run count
+        Last run timestamp (converted)
+5. Forensic Analysis
+    Why Registry Explorer > regedit?
+     Auto-decodes ROT13
+     Shows timestamps & run counts
+     Bookmark navigation
+    UserAssist Significance:
+     Tracks GUI program launches
+     Persists after deletion of shortcuts/history
+
+Deliverable Table (Example)
+#,  Program Name (Decoded),      Full Path,                   Run Count,      Last Execution (UTC)
+1,  Chrome.exe,             C:\Program Files\Google\
+                            Chrome\Application\chrome.exe,    152,            2025-11-20 14:30:05
+2,  Notepad.exe,            C:\Windows\System32\notepad.exe,  5,              2025-11-26 09:15:00
+3,  Calculator.exe,         C:\Windows\System32\calc.exe,     12,             2025-11-26 10:00:22
+
+Conclusion:
+The UserAssist key provides reliable, persistent proof of program execution, surviving cleanup
+attempts. Registry Explorer is the forensic standard for parsing this data efficiently and accurately.

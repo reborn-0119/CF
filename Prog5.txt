@@ -1,0 +1,30 @@
+Protocol Analysis (Traffic Breakdown)
+Objective:
+Find out which "languages" (protocols) your computer uses the most and which ones take up the most data.
+Procedure:
+1. Capture Normal Traffic
+    Start Wireshark and do normal things (watch a video, browse) for 5 minutes.
+    Stop the capture.
+2. Open the Report
+    Go to the menu: Statistics -> Protocol Hierarchy.
+3. Compare the Numbers
+    Look at the % Packets column (how often it speaks).
+    Look at the % Bytes column (how heavy the data is).
+Deliverable Tables
+1. Top 3 Protocols by Packet Count (Frequency)
+Rank,   Protocol Name,  % Packets
+1,      TCP,            85.2%
+2,      TLS (HTTPS),    60.1%
+3,      DNS,            5.4%
+2. Top 3 Protocols by Byte Count (Data Size)
+Rank,   Protocol Name,  % Bytes
+1,      TLS (HTTPS),    92.5%
+2,      TCP,            95.0%
+3,      QUIC,           2.1%
+
+Analysis Question:
+Why is there a difference?
+Packets: Count how many "envelopes" are sent. Simple tasks like DNS send 
+         many tiny envelopes (high packets, low bytes).
+Bytes: Measure the "weight" of the envelopes. Video streaming sends fewer,
+       but huge envelopes (lower packets, very high bytes).

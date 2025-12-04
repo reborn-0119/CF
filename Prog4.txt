@@ -1,0 +1,52 @@
+Objective:
+Capture the invisible data packets flying through the air to see exactly
+what websites a user visited—even if they cleared their browser history.
+Tools Required:
+Windows/macOS/Linux
+Wireshark (latest version: https://www.wireshark.org/download.html)
+Internet connection
+Web browser (to generate traffic)
+Procedure
+1. Install & Launch Wireshark
+    Download and install Wireshark (include Npcap on Windows).
+    Launch Wireshark as Administrator (required for capture).
+2. Select Capture Interface
+    In the main window, double-click the active network interface (e.g., Wi-Fi , Ethernet )
+    with rising packet graph.
+    Ensure Promiscuous Mode is enabled (default).
+3. Start Capture & Generate Traffic
+    Click Start (blue shark fin).
+    Open browser → visit 3 different websites (e.g., http://du.ac.in ,
+    http://neverssl.com , https://wikipedia.org ).
+    Perform 1 DNS lookup: Open new tab → type test.local → press Enter.
+    Stop capture after 30–60 seconds.
+4. Filter HTTP Traffic
+    In filter bar, type: http → press Enter.
+    Look for GET requests in Info column.
+    Right-click a GET packet → Follow → HTTP Stream.
+    Record: Host header (visited domain).
+5. Filter DNS Traffic
+    Clear filter → type: dns → press Enter.
+    Locate Standard query A for test.local .
+    Expand DNS packet → record Queries → Name.
+6. Export Evidence
+    File → Export Objects → HTTP → Save any downloaded files (if applicable).
+    File → Export Specified Packets → Save filtered DNS packets as dns_evidence.pcapng .
+7. Timeline Reconstruction
+    Sort by Time column.
+    Document sequence: DNS query → TCP handshake → HTTP GET → Response.
+
+Deliverable Tables
+1. HTTP Artifacts (Visited Sites)
+#,  HTTP Method,    Status Code,    Timestamp,  Domain (Host)
+1,  GET,            200 OK,         10:45:01,   www.neverssl.com
+2,  GET,            301 Moved,      10:45:05,   www.du.ac.in
+3,  GET,            200 OK,         10:45:10,   www.wikipedia.org
+2.DNS Query Evidence
+Query Name,     Response,                 Query Type,         Packet #
+test.local ,    No response / NXDOMAIN,   A (Standard Query), 452
+
+Conclusion:
+Wireshark transforms raw packets into actionable forensic intelligence. Even with HTTPS dominance,
+DNS queries, HTTP sites, and metadata reveal user intent and behavior — critical in network intrusion
+and insider threat cases.

@@ -1,0 +1,31 @@
+Use the I/O Graph to visualize network traff
+Goal:
+Use a graph to see exactly when a burst of heavy internet traffic happened and what caused it1.
+The 6 Simple Steps:
+1. Quiet Start:
+    Start a Wireshark capture and wait a moment for the lines to be flat/stable
+2. Make Noise:
+    Suddenly do something heavy—like starting a 4K YouTube video or
+    downloading a large file—to create a "spike"
+3. Stop & Graph:
+    Stop the capture. Go to menu Statistics -> I/O Graph
+4. Find the Bump:
+    Look for the big mountain on the graph.
+    Hover your mouse over the peak to find the exact Time (e.g., 45 seconds in)
+5. Filter Time:
+    Close the graph. In the main filter bar, type frame.time_relative >= [Time] (replace [Time] with the number you found)
+6. Identify Culprit:
+    Go to Statistics -> Protocol Hierarchy to see which protocol
+    (like "Data" or "TLS") is taking up all the space during that time.
+
+Deliverable (Example)
+1. The Graph Observation
+    Traffic Spike Time: 00:00:45 (45 seconds into capture).
+    Activity: I started downloading a 1GB file at this moment.
+2. The Protocol Analysis
+Top Protocol During Spike,      % Bytes,    Explanation
+TLS (Transport Layer Security), 98.2%,      This is the encrypted video stream/download data coming from the server.
+
+Why is this useful?
+It helps network administrators find out why the internet suddenly got slow at a
+specific time (e.g., someone started a huge backup or watched Netflix during work hours).
