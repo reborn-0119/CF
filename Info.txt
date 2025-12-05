@@ -1,0 +1,7 @@
+1. Hasher
+2. Network Reconnaissance & IP Tracking
+3. Windows Registry , Registry Explorer
+4. Packet Capture & Protocol Analysis with Wireshark
+4. Analyze a capture file to determine the most prevalent protocols and their proportional impact on the network.
+5. Identify all unique devices (endpoints) on the network and analyze the conversations between them.
+6. Use the I/O Graph to visualize network traffic and identify a significant traffic spike.
